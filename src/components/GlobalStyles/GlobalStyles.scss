@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --primary-color:#fe2c55;
+    --text-color:#333;
+    --back-color: #000;
+}
+button, input, [tabindex]{
+    border: none;
+    outline: none;
+}
+a[href]{
+    color: var(--text-color);
+    text-decoration: none;
+}

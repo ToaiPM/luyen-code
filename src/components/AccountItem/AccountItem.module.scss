@@ -1,0 +1,30 @@
+.wrapper{
+    padding-left: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.content{
+    padding-left: 10px;
+}
+.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.name{
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    color: #0f6570;
+    font-weight: 600;
+}
+.name-icon{
+    padding-left: 4px;
+    font-size: 20px;
+    color: #1693a3;
+}
+.username{
+    color: #33333391;
+    font-size: 17px;
+}
