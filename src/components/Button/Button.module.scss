@@ -5,10 +5,12 @@
     font-size: 15px;
     padding: 6px 10px;
     cursor: pointer;
+    background: transparent;
+    +.btn{
+        margin-left: 10px;
+    }
 }
-.btn +.btn{
-    margin-left: 10px;
-}
+
 .primary{
     background-color: #fe2c55;
     color: #fff;
@@ -25,4 +27,10 @@
     border: 1px solid #3333334d;
     border-radius: 0px;
     background: #fff;
+}
+.icon{
+   margin-right: 10px;
+   display: inline-block;
+   width: 24px;
+   text-align: center;
 }

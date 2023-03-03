@@ -13,15 +13,18 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English'
+        title: 'English',
+        to: '/upload'
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-        title: 'Feedback and help'
+        title: 'Feedback and help',
+        to: ''
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
-        title: 'Keybroard shortcuts'
+        title: 'Keybroard shortcuts',
+        to: ''
     }
 ]
 function Header() {
@@ -62,7 +65,7 @@ function Header() {
                 </div>
             </Tippy>
             <div className={cx('actions')}>
-                <Button outline><FontAwesomeIcon icon={faPlus} /> Tải lên</Button>
+                <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} />}> Tải lên</Button>
                 <Button primary>Đăng nhập</Button>
                 <Menu items={MENU_ITEMS}>
                     <button className={cx('more-btn')}>

@@ -14,10 +14,11 @@ function Menu({children, items=[]}) {
     return (
         <Tippy
             interactive
+            delay={[0,700]}
             placement='bottom-end'
             render={attrs => (
-                <div className={cx('content')} tabIndex="-1" {...attrs}>
-                    <PropperWrapper>
+                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                    <PropperWrapper className={cx('menu-propper')}>
                         {renderItems()}
                     </PropperWrapper>
                 </div>

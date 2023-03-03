@@ -1,3 +1,25 @@
-.content{
+.menu-list{
     width: 244px;
+    .menu-item{
+        margin-left: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+.menu-item{
+    padding: 6px 0px;
+    background: transparent;
+    font-size: 17px;
+    
+}
+.menu-propper{
+    padding: 12px 0px;
+}
+.menu-item{
+    width: 92%;
+    display: flex;
+    justify-content: flex-start;
+    &:hover{
+        background-color: rgba(22, 24, 25, 0.03);
+    }
 }
