@@ -3,13 +3,17 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
 import MenuItem from './MenuItem';
+import { useState } from 'react';
 
 
 const cx = classNames.bind(styles)
 
 function Menu({children, items=[]}) {
+    const [history, setHistory] = useState([{ data: items }])
+    const current = history[history.length -1]
+    console.log(current.data)
     const renderItems =()=>{
-        return items.map((item, index)=> <MenuItem key={index} data={item} />);
+        return current.data.map((item, index)=> <MenuItem key={index} data={item} />);
     }
     return (
         <Tippy

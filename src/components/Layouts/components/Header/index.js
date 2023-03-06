@@ -14,7 +14,20 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
-        to: '/upload'
+        children:{
+            title: 'Language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt'
+                }
+            ]
+        }
+
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
