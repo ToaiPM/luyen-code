@@ -4,6 +4,8 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
 import MenuItem from './MenuItem';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 const cx = classNames.bind(styles)
@@ -13,7 +15,16 @@ function Menu({children, items=[]}) {
     const current = history[history.length -1]
     console.log(current.data)
     const renderItems =()=>{
-        return current.data.map((item, index)=> <MenuItem key={index} data={item} />);
+        return current.data.map((item, index)=> {
+            
+            return (
+                <MenuItem key={index} data={item} onClick={()=>{
+                    if(item.children){
+                        setHistory(prev => [...prev,item.children])
+                    }
+                }} />
+            )
+        });
     }
     return (
         <Tippy
@@ -23,6 +34,9 @@ function Menu({children, items=[]}) {
             render={attrs => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PropperWrapper className={cx('menu-propper')}>
+                        { history.length > 1 && <div className={cx('header-menu-sub')} onClick={()=>{
+                            setHistory(prev => prev.slice(0, prev.length - 1))
+                        }}> <FontAwesomeIcon icon={faChevronLeft} /> Ngôn ngữ</div> }
                         {renderItems()}
                     </PropperWrapper>
                 </div>
