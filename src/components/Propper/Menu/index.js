@@ -9,11 +9,10 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 const cx = classNames.bind(styles)
-
-function Menu({children, items=[]}) {
+const DefaultFn =()=>{}
+function Menu({children, items=[], SuKien = DefaultFn}) {
     const [history, setHistory] = useState([{ data: items }])
     const current = history[history.length -1]
-    console.log(current.data)
     const renderItems =()=>{
         return current.data.map((item, index)=> {
             
@@ -21,6 +20,8 @@ function Menu({children, items=[]}) {
                 <MenuItem key={index} data={item} onClick={()=>{
                     if(item.children){
                         setHistory(prev => [...prev,item.children])
+                    }else{
+                        SuKien(item)// in ra console.log(item)
                     }
                 }} />
             )
@@ -42,6 +43,7 @@ function Menu({children, items=[]}) {
                 </div>
             )}
         >
+            
             {children}
         </Tippy>
     );

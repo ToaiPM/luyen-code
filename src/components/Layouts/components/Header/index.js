@@ -18,10 +18,12 @@ const MENU_ITEMS = [
             title: 'Language',
             data: [
                 {
+                    type:'language',
                     code: 'en',
                     title: 'English'
                 },
                 {
+                    type:'language',
                     code: 'vi',
                     title: 'Tiếng Việt'
                 }
@@ -47,6 +49,17 @@ function Header() {
             setSearchResult([1,2,3])
         },0)
     },[])
+    const handleSuKien=(menuItem)=>{
+        switch(menuItem.type){
+            case 'language':
+                //
+                break;
+            default:
+                //
+                break;
+        }
+    }
+    const currentUser = true
     return (
     <header className={cx('wrapper')}>
         <div className={cx('inner')}>
@@ -80,7 +93,7 @@ function Header() {
             <div className={cx('actions')}>
                 <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} />}> Tải lên</Button>
                 <Button primary>Đăng nhập</Button>
-                <Menu items={MENU_ITEMS}>
+                <Menu items={MENU_ITEMS} SuKien={handleSuKien}>
                     <button className={cx('more-btn')}>
                         <FontAwesomeIcon icon={faEllipsisVertical}/>
                     </button>
