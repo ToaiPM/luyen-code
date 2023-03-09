@@ -76,6 +76,16 @@
         background-color: #e6e7ea;
     }
 }
+.actions{
+    display: flex;
+    align-items: center;
+}
+.action-btn{
+    background-color: transparent;
+    font-size: 22px;
+    color: #161823;
+    padding: 4px 12px;
+}
 .more-btn{
     font-size: 20px;
     background-color: transparent;

@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faMessage } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
@@ -91,12 +91,34 @@ function Header() {
                 </div>
             </Tippy>
             <div className={cx('actions')}>
-                <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} />}> Tải lên</Button>
-                <Button primary>Đăng nhập</Button>
+                {
+                    currentUser ? (
+                        <>
+                            <button className={cx('action-btn')}>
+                                <FontAwesomeIcon icon={faCloudUpload} />
+                            </button>
+                            <button className={cx('action-btn')}>
+                                <FontAwesomeIcon icon={faMessage} />
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Button outline leftIcon={<FontAwesomeIcon icon={faPlus} />}> Tải lên</Button>
+                            <Button primary>Đăng nhập</Button>
+                        </>
+                    )
+                }
                 <Menu items={MENU_ITEMS} SuKien={handleSuKien}>
-                    <button className={cx('more-btn')}>
-                        <FontAwesomeIcon icon={faEllipsisVertical}/>
-                    </button>
+                    {
+                        currentUser ? (
+                            <img className={cx('user-avatar')} src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/3a7b263d454d2ab77bb45c7ae5920f30~c5_300x300.webp?x-expires=1677736800&x-signature=VnhsYDBQw0ASylNKYiDaim0XvDs%3D" alt="Toai" />
+
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical}/>
+                            </button>
+                        )
+                    }
                 </Menu>
             </div>
         </div>
