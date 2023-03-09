@@ -19,6 +19,9 @@
     width: 92%;
     display: flex;
     justify-content: flex-start;
+    &.separate{
+        border-top: 1px solid rgba(22, 24, 25, 0.03);
+    }
     &:hover{
         background-color: rgba(22, 24, 25, 0.03);
     }

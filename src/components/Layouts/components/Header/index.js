@@ -2,13 +2,16 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faMessage, faCoins, faGear, faSign } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
+import Tippys from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'
 import { useEffect, useState } from 'react';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Propper/Menu';
+import { faUber } from '@fortawesome/free-brands-svg-icons';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -42,7 +45,34 @@ const MENU_ITEMS = [
         to: ''
     }
 ]
+const menuUser = [
+    {
+        icon: <FontAwesomeIcon icon={faUber} />,
+        title: 'View profile',
+        to: '/@hoaa'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get coins',
+        to: '/coin',
+        
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Settings',
+        to: '/settings'
+    },
+    
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faSign} />,
+        title: 'Log out',
+        to: '/logout',
+        separate: true
+    }
+]
 function Header() {
+    const currentUser = true
     const [searchResult, setSearchResult] = useState([])
     useEffect(()=>{
         setTimeout(()=>{
@@ -59,7 +89,6 @@ function Header() {
                 break;
         }
     }
-    const currentUser = true
     return (
     <header className={cx('wrapper')}>
         <div className={cx('inner')}>
@@ -94,9 +123,11 @@ function Header() {
                 {
                     currentUser ? (
                         <>
-                            <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCloudUpload} />
-                            </button>
+                            <Tippys trigger='click' content="Upload Video" placement='bottom'>
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </Tippys>
                             <button className={cx('action-btn')}>
                                 <FontAwesomeIcon icon={faMessage} />
                             </button>
@@ -108,7 +139,7 @@ function Header() {
                         </>
                     )
                 }
-                <Menu items={MENU_ITEMS} SuKien={handleSuKien}>
+                <Menu items={currentUser ? menuUser : MENU_ITEMS} SuKien={handleSuKien}>
                     {
                         currentUser ? (
                             <img className={cx('user-avatar')} src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/3a7b263d454d2ab77bb45c7ae5920f30~c5_300x300.webp?x-expires=1677736800&x-signature=VnhsYDBQw0ASylNKYiDaim0XvDs%3D" alt="Toai" />
