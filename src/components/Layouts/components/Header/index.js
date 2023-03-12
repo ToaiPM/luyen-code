@@ -11,7 +11,6 @@ import { Wrapper as PropperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Propper/Menu';
-import { faUber } from '@fortawesome/free-brands-svg-icons';
 import {UploadIcon} from '~/components/Icons';
 import Image from '~/components/Image';
 const cx = classNames.bind(styles);
