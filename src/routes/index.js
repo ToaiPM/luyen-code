@@ -7,7 +7,7 @@ import DefaultLayout from "~/components/Layouts/DefaultLayout";
 import { Fragment } from "react";
 const publicRouter = [
     {path: '/', component: Home, layout: DefaultLayout},
+    {path: '/:nickname', component: Contacts, layout: DefaultLayout},
     {path: '/upload', component: Upload, layout: Fragment},
-    {path: '/contacts', component: Contacts, layout: Fragment}
 ]
 export { publicRouter }

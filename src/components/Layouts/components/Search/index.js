@@ -6,19 +6,44 @@ import AccountItem from '~/components/AccountItem';
 import style from './Search.module.scss'
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { useDebounce } from '~/hooks';
+import * as request from '~/ultis/request';
 const cx = classNames.bind(style)
 function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
+    
+    const debounced = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
     useEffect(()=>{
-        setTimeout(()=>{
-            setSearchResult([1,2])
-        },0)
-    },[])
+        if(!debounced.trim()){
+            setSearchResult([])
+            return;
+        }
+        setLoading(true)
+
+        const fetchApi = async ()=>{
+            try {
+                const res = await request.get(`users/search`,{
+                    params:{
+                        q:debounced,
+                        type: 'less'
+                    }
+                })
+                setSearchResult(res.data) 
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+            }
+        };
+
+        fetchApi();
+
+        
+    },[debounced])
     return ( 
         <HeadlessTippy 
             interactive
@@ -27,10 +52,9 @@ function Search() {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PropperWrapper>
                         <p className={cx('search-title')}>Tài khoản</p>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((result)=>(
+                            <AccountItem key={result.id} data={result} />
+                        ))}
                     </PropperWrapper>
                 </div>
             )}
@@ -44,8 +68,8 @@ function Search() {
                     onChange={(e)=> setSearchValue(e.target.value) }
                     onFocus={()=>setShowResult(true)}
                 />
-                {/**<FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
-                {!!searchValue && (  
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> }
+                {!!searchValue && !loading && (  
                     <button className={cx('clear')} onClick={()=>{
                         setSearchValue('');
                         inputRef.current.focus()
