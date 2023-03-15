@@ -6,4 +6,7 @@ export const get = async (path, option = {}) =>{
     const reponse = await request.get(path, option);
     return reponse.data;
 }
-export default request;
+
+/** Hàm get nhận 2 tham số path="đường dẫn" và option là từ khóa tìm kiếm 
+ * Hàm get trả về OBJECT {dữ liệu}
+ */

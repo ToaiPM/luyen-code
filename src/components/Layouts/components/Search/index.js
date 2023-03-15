@@ -7,7 +7,8 @@ import style from './Search.module.scss'
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDebounce } from '~/hooks';
-import * as request from '~/ultis/request';
+import * as searchSevices  from '~/apiServices/searchServices';
+
 const cx = classNames.bind(style)
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -23,27 +24,20 @@ function Search() {
             setSearchResult([])
             return;
         }
-        setLoading(true)
-
-        const fetchApi = async ()=>{
-            try {
-                const res = await request.get(`users/search`,{
-                    params:{
-                        q:debounced,
-                        type: 'less'
-                    }
-                })
-                setSearchResult(res.data) 
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
-        };
-
-        fetchApi();
-
-        
+        const fetchApt = async ()=>{
+            setLoading(true)
+            const result = await searchSevices.search(debounced)
+            setSearchResult(result)
+            setLoading(false)
+        }
+        fetchApt()
     },[debounced])
+    const handleChange =(e)=>{
+        //const search = e.target.value;
+        if(!(e.target.value).startsWith(' ')){
+            setSearchValue(e.target.value)
+        }
+    }
     return ( 
         <HeadlessTippy 
             interactive
@@ -65,7 +59,7 @@ function Search() {
                     ref={inputRef}
                     value={searchValue}
                     placeholder='Tìm kiếm tài khoản và video' 
-                    onChange={(e)=> setSearchValue(e.target.value) }
+                    onChange={handleChange}
                     onFocus={()=>setShowResult(true)}
                 />
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> }

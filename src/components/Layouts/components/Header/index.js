@@ -10,6 +10,8 @@ import Menu from '~/components/Propper/Menu';
 import {UploadIcon} from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import { Link } from 'react-router-dom';
+import routesConfig from "~/config/routes";
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -86,9 +88,11 @@ function Header() {
     return (
     <header className={cx('wrapper')}>
         <div className={cx('inner')}>
-            <div className={cx('logo')}>
-                <img src={images.logo} alt='Toai'/>
-            </div>
+            <Link to={routesConfig.home}>
+                <div className={cx('logo')}>
+                    <img src={images.logo} alt='Toai'/>
+                </div>
+            </Link>
             <Search />
             
             <div className={cx('actions')}>
