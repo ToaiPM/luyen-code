@@ -29,6 +29,7 @@ function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
     }
     return (
         <Tippy
+            visible={true}
             interactive
             delay={[0,700]}
             offset={[16,8]}
@@ -40,7 +41,7 @@ function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
                         { history.length > 1 && <div className={cx('header-menu-sub')} onClick={()=>{
                             setHistory(prev => prev.slice(0, prev.length - 1))
                         }}> <FontAwesomeIcon icon={faChevronLeft} /> Ngôn ngữ</div> }
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PropperWrapper>
                 </div>
             )}
