@@ -39,43 +39,47 @@ function Search() {
         }
     }
     return ( 
-        <HeadlessTippy 
-            interactive
-            visible={showResult && searchResult.length > 0}
-            render={attrs => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PropperWrapper>
-                        <p className={cx('search-title')}>Tài khoản</p>
-                        {searchResult.map((result)=>(
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                    </PropperWrapper>
-                </div>
-            )}
-            onClickOutside={()=> setShowResult(false)}
-        >
-            <div className={cx('search')}>
-                <input 
-                    ref={inputRef}
-                    value={searchValue}
-                    placeholder='Tìm kiếm tài khoản và video' 
-                    onChange={handleChange}
-                    onFocus={()=>setShowResult(true)}
-                />
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> }
-                {!!searchValue && !loading && (  
-                    <button className={cx('clear')} onClick={()=>{
-                        setSearchValue('');
-                        inputRef.current.focus()
-                    }}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        // Sử dụng thẻ div hoặc span để fix warning HeadlessTippy
+        <div>
+            <HeadlessTippy 
+                interactive
+                //appendTo={()=> document.body} //fix lỗi warning trình duyệt
+                visible={showResult && searchResult.length > 0}
+                render={attrs => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PropperWrapper>
+                            <p className={cx('search-title')}>Tài khoản</p>
+                            {searchResult.map((result)=>(
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                        </PropperWrapper>
+                    </div>
                 )}
-                <button className={cx('search-btn')}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
-        </HeadlessTippy>
+                onClickOutside={()=> setShowResult(false)}
+            >
+                <div className={cx('search')}>
+                    <input 
+                        ref={inputRef}
+                        value={searchValue}
+                        placeholder='Tìm kiếm tài khoản và video' 
+                        onChange={handleChange}
+                        onFocus={()=>setShowResult(true)}
+                    />
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> }
+                    {!!searchValue && !loading && (  
+                        <button className={cx('clear')} onClick={()=>{
+                            setSearchValue('');
+                            inputRef.current.focus()
+                        }}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
+                    <button className={cx('search-btn')}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

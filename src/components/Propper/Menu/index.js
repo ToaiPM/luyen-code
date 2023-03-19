@@ -29,11 +29,10 @@ function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
     }
     return (
         <Tippy
-            visible={true}
             interactive
             delay={[0,700]}
             offset={[16,8]}
-            hideOnClick={hideOnClick}
+            hideOnClick={hideOnClick} //Nhấp vào btn thì Menuitem không ẩn
             placement='bottom-end'
             render={attrs => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
@@ -45,6 +44,7 @@ function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
                     </PropperWrapper>
                 </div>
             )}
+            onHide={()=>setHistory((prev)=>prev.slice(0,1))} //Kéo chuột chỗ khác, tự động trả về menu cấp cha
         >
             
             {children}
