@@ -1,7 +1,7 @@
 
-const route = {
+const routes = {
     home:'/',
     upload:'/upload',
     contacts:'/:nickname'
 }
-export default route
+export default routes
