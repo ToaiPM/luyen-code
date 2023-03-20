@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import classNames from "classnames/bind";
 import Image from "../Image";
 import styles from './AccountItem.module.scss';
@@ -24,5 +25,7 @@ function AccountItem({data}) {
         </Link>
     );
 }
-
+AccountItem.propTypes = {
+    data: propTypes.object
+}
 export default AccountItem;
