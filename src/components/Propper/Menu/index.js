@@ -12,14 +12,14 @@ const cx = classNames.bind(styles)
 const DefaultFn =()=>{}
 function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
     const [history, setHistory] = useState([{ data: items }])
-    const current = history[history.length -1]
+    const current = history[history.length -1] //phần tử cuối
     const renderItems =()=>{
         return current.data.map((item, index)=> {
             
             return (
                 <MenuItem key={index} data={item} onClick={()=>{
                     if(item.children){
-                        setHistory(prev => [...prev,item.children])
+                        setHistory(prev => [...prev,item.children]) //thêm phần tử mới
                     }else{
                         SuKien(item)// in ra console.log(item)
                     }
@@ -38,7 +38,7 @@ function Menu({children, items=[], hideOnClick=false, SuKien = DefaultFn}) {
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PropperWrapper className={cx('menu-propper')}>
                         { history.length > 1 && <div className={cx('header-menu-sub')} onClick={()=>{
-                            setHistory(prev => prev.slice(0, prev.length - 1))
+                            setHistory(prev => prev.slice(0, prev.length - 1)) // lấy pt[0] đến pt[lenght-1]
                         }}> <FontAwesomeIcon icon={faChevronLeft} /> Ngôn ngữ</div> }
                         <div className={cx('menu-body')}>{renderItems()}</div>
                     </PropperWrapper>

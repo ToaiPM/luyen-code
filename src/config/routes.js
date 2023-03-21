@@ -2,6 +2,7 @@
 const routes = {
     home:'/',
     upload:'/upload',
-    contacts:'/:nickname'
+    contacts:'/:nickname',
+    following:'/following'
 }
 export default routes
