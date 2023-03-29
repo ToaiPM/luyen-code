@@ -11,7 +11,7 @@ function Sidebar() {
         <Menu>
             <MenuItem title="For you" to={config.routes.home} icon={<HomeIcon/>} />
             <MenuItem title="Following" to={config.routes.following} icon={<UserGroupIcon/>} />
-            <MenuItem title="Following" to={config.routes.following} icon={<LiveIcon/>} />
+            <MenuItem title="Following" to={config.routes.upload} icon={<LiveIcon/>} />
         </Menu>
     </div>
     );
