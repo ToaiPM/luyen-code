@@ -1,0 +1,38 @@
+1. git init
+2. git status
+3. git add .
+4. git reset
+5. git commit -m 'ghi chu'
+6. git log
+7. git log --oneline
+8. git checkout 715c79c
+9. git checkout master - trở lại hiện tại
+10. git branch
+11. git checkout -b ten_nhanh_can_tao - tạo nhánh
+12. git merge ten_nhanh (đứng ở nhánh main)
+13. git branch -d ten_nhanh_can_xoa
+14. conflict - là sự xung đột khi merge 2 nhánh lại với nhau
+
+--kéo 1 nhánh từ remote về
+	+ bước 1: lên github tạo nhanh_moi
+	+ Bước 2: về máy local trở lại nhánh main làm như sau:
+		git fetch origin
+		git checkout -b nhanh_moi origin/nhanh_moi
+		
+15. Thiết lập tên người dùng/địa chỉ gmail:
+	- git config --global user.name <username>
+	- git config --global user.email <mailaddress>
+16. Xem thông tin người dùng/email:
+	- git config --global --list
+17. Xem origin:
+	- git remote -v
+18. add origin:
+	- git remote add origin <URL>
+19. Remove origin:
+	- git remote rm origin
+20. Thay đổi origin:
+	- git remote set-url origin <URL>
+	
+21. Làm cách nào để đăng xuất trong bảng điều khiển Git Bash trong Windows:
+	- https://www.youtube.com/watch?v=PjBg5AaFIz0&list=PPSV
+	- https://www.web-development-kb-asia.site/vi/git/lam-cach-nao-de-dang-xuat-trong-bang-dieu-khien-git-bash-trong-windows/827386210/
